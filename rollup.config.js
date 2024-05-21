@@ -9,12 +9,11 @@
  */
 import path from 'path';
 import terser from '@rollup/plugin-terser';
-import nodeResolve from '@rollup/plugin-node-resolve'; // 解析 node_modules 中的模块
+import resolve from '@rollup/plugin-node-resolve'; // 解析 node_modules 中的模块
 import commonjs from '@rollup/plugin-commonjs'; // 让rollup支持commonjs
 import typescript from 'rollup-plugin-typescript2';
 import alias from '@rollup/plugin-alias'; // alias 和 reslove 功能
 import eslint from '@rollup/plugin-eslint';
-import { babel } from '@rollup/plugin-babel'
 import clear from 'rollup-plugin-clear';
 import pkg from './package.json';
 
@@ -74,9 +73,7 @@ export default {
     },
   ],
   plugins: [
-    nodeResolve({
-      extensions, //指定插件将操作的文件的扩展名。
-    }),
+    resolve(extensions),
     commonjs(),
     eslint({
       fix: true, // 自动修复
@@ -85,10 +82,9 @@ export default {
       targets: ['dist', 'es', 'lib', 'iife', 'docs'],
       watch: true,
     }),
-    babel({ babelHelpers: 'bundled' }),
     typescript({ tsconfig: getPath('tsconfig.json'), extensions }),
     alias({
       entries: [{ find: '@', replacement: getPath('src') }],
     }),
-  ]
+  ],
 }

@@ -1,11 +1,13 @@
 /*
- * @Author: HxB
- * @Date: 2023-03-13 15:05:27
- * @LastEditors: kevin-zzzzzz
- * @LastEditTime: 2023-04-14 17:58:59
+ * @Author: kevinZzzzzz
+ * @Date: 2023-04-17 10:08:24
+ * @version: 
+ * @LastEditors: kevinZzzzzz
+ * @LastEditTime: 2023-04-26 15:48:26
  * @Description: eslint 配置文件
- * @FilePath: \js-tools-xxx\.eslintrc.js
+ * @FilePath: \hoslink-xxx\.eslintrc.js
  */
+
 module.exports = {
   env: {
     browser: true,
@@ -22,15 +24,15 @@ module.exports = {
   rules: {
     'zob/comment': 'error', // 中英文空格间距 找英文符号正则 ([\u4e00-\u9fa5]\s*[!@#$%^&*_+=;:'"{\[\]},.\/\\`\(\)])
     '@typescript-eslint/ban-ts-comment': 'off',
-    'no-useless-escape': 'warn',
+    'no-useless-escape': 'off',
     'prettier/prettier': [
-      'error',
+      'warn',
       {
         // trailingComma: 'all',
         // arrowParens: 'always',
         // htmlWhitespaceSensitivity: 'ignore',
       },
-      { usePrettierrc: true },
+      { "insertPragma": false },
     ],
     'no-undef': ['error'], // 禁止未声明变量的引用
     'spaced-comment': ['error', 'always'], // 注释开始后，此规则将强制间距的一致性 // 或 /*。
@@ -161,6 +163,43 @@ module.exports = {
           'torage',
           'xxxxxx',
           'arial',
+          'pwdencrypt',
+          'chuanyue',
+          'subtype',
+          'applytypes',
+          'reviewmethods',
+          'matchmethods',
+          'transpurposes',
+          'rhbloodgroup',
+          'bloodgroup',
+          'signrhbloodgroup',
+          'applicationstatus',
+          'irregularantis',
+          'matchchecks',
+          'dictmatchbloodsubtype',
+          'scrapcauses',
+          'billtypes',
+          'subtypechecks',
+          'logfeature',
+          'matchresult',
+          'bloodmap',
+          'lockreson',
+          'parturit',
+          'hbsag',
+          'hbeag',
+          'hexto',
+          'bloodstandard',
+          'Stroage',
+          'Zabcdefghijklmnopqrstuvwxyz0123456789',
+          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+          'utftext',
+          'rolelist',
+          'autologous',
+          'depts',
+          'depts0',
+          'Depts',
+          'Depts0',
+          'Scoprs',
         ],
         skipIfMatch: [
           // http url
@@ -189,7 +228,7 @@ module.exports = {
       },
     ],
     'import/first': ['error'], // 导入必须在最前面
-    'import/exports-last': ['error'], // 导出必须在最后面
+    'import/exports-last': 'off', // 导出必须在最后面
     'import/newline-after-import': ['error'], // 导入后必须留出空行
     'import/no-duplicates': ['error'], // 同一个文件的导入必须写在一行
     'import/order': ['error', { 'newlines-between': 'never' }], // 导入排序
