@@ -1,7 +1,7 @@
 /*
  * @Author: kevinZzzzzz
  * @Date: 2023-04-14 10:10:50
- * @version: 
+ * @version:
  * @LastEditors: kevinZzzzzz
  * @LastEditTime: 2023-04-14 15:03:53
  * @Description: rollup配置
@@ -26,7 +26,7 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 export default {
   input: getPath('src/index.ts'),
-  output:  [
+  output: [
     {
       file: getPath(pkg.iife),
       format: 'iife', // iife 支持 自执行函数，可通过 `<script>` 标签加载。
@@ -87,4 +87,4 @@ export default {
       entries: [{ find: '@', replacement: getPath('src') }],
     }),
   ],
-}
+};

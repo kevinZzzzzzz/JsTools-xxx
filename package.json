@@ -12,7 +12,7 @@
   "iife-source": "iife/index.source.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c",
+    "build": "npm run lint && rollup -c",
     "lint": "npm run prettier && npm run eslint",
     "eslint": "eslint ./src/* --fix --ext .ts,.tsx,.js,.jsx,.vue",
     "prettier": "prettier --write ./src/**/*.{ts,tsx,js,jsx,vue,html,css,scss,less}",

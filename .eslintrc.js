@@ -1,7 +1,7 @@
 /*
  * @Author: kevinZzzzzz
  * @Date: 2023-04-17 10:08:24
- * @version: 
+ * @version:
  * @LastEditors: kevinZzzzzz
  * @LastEditTime: 2023-04-26 15:48:26
  * @Description: eslint 配置文件
@@ -32,7 +32,7 @@ module.exports = {
         // arrowParens: 'always',
         // htmlWhitespaceSensitivity: 'ignore',
       },
-      { "insertPragma": false },
+      { insertPragma: false },
     ],
     'no-undef': ['error'], // 禁止未声明变量的引用
     'spaced-comment': ['error', 'always'], // 注释开始后，此规则将强制间距的一致性 // 或 /*。
@@ -41,7 +41,7 @@ module.exports = {
     'no-mixed-spaces-and-tabs': ['error', false], // 不允许使用混合空格和制表符进行缩进
     'comma-dangle': ['error', 'only-multiline'], // 多行时才可以使用尾随逗号
     indent: ['error', 2, { SwitchCase: 1 }], // 强制执行一致的缩进样式
-    'linebreak-style': ['error', 'windows'], // 强制执行统一的行结尾 CRLF
+    'linebreak-style': ['off'], // 强制执行统一的行结尾 CRLF
     quotes: ['error', 'single'], // 单引号
     semi: ['error', 'always'], // 在语句结尾需要分号
     // 'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }], // @typescript-eslint/no-unused-vars

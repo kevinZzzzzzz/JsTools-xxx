@@ -12,7 +12,7 @@ module.exports = {
   insertPragma: false, // 是否插入已经被格式化的标识
   tabWidth: 2, // 缩进空格数
   useTabs: false, // 是否使用 tab 缩进
-  endOfLine: 'crlf', // 行尾换行符
   trailingComma: 'all', // 尽可能使用尾随逗号，结尾处不加逗号 none。
   htmlWhitespaceSensitivity: 'ignore', // 忽略 '>' 下落问题
+  endOfLine: 'auto',
 };
