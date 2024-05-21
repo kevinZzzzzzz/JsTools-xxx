@@ -1,6 +1,6 @@
 export default {
   // 继承的规则
-  extends: ["@commitlint/config-conventional"],
+  extends: ["@commitlint/config-conventional", "cz"],
   // 定义规则类型
   rules: {
     // type 类型定义，表示 git 提交的 type 必须在以下类型范围内
