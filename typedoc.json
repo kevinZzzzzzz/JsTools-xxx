@@ -2,9 +2,8 @@
   "entryPoints": [
     "src/index.ts"
   ],
-  "out": "docs",
+  "customCss": "./_docs.custom.css",
   "readme": "none",
-  "plugin": "typedoc-plugin-markdown",
   "includeVersion": true,
   "disableSources": true
 }
