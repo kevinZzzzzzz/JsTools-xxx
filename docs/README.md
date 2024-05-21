@@ -1,6 +1,6 @@
 js-tools-xxx
 
-# js-tools-xxx - v1.0.0
+# js-tools-xxx - v1.0.1
 
 ## Table of contents
 
