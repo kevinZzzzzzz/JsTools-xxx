@@ -1,10 +1,17 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('fs')) :
   typeof define === 'function' && define.amd ? define(['exports', 'fs'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.$xxx = {}));
-})(this, (function (exports) { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.$xxx = {}, global.fs));
+})(this, (function (exports, fs) { 'use strict';
 
+  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+  var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
+
+  var dateFormatSearch = 'YYYY-MM-DD';
+  var dateFormatSel = 'YYYY-MM-DD HH:mm';
   var dateFormatPost = 'YYYY-MM-DD HH:mm:ss';
+  var dateFormatPrint = ' YYYY 年 MM 月 DD 日 HH 时 mm 分 ';
 
   /**
    * 比较前一个版本号是否比后一个版本号高
@@ -29,7 +36,7 @@
 
   /**
    * 将参数拼接到接口 url 上
-   * @example:
+   * @example
    * formatGetParams({ a: 1, b: 2, }) => '?a=1&b=2'
    * @params obj 对象
    * @returns temp 完整接口 uri 路径
@@ -5832,8 +5839,32 @@
           : moment()[type](amount, unit).format(format);
   };
 
+  /**
+   * 复制文件
+   * @param {*} source 源文件
+   * @param {*} target 目标文件
+   */
+  var copyFile = function (source, target) {
+      if (fs__default["default"].existsSync(target)) {
+          console.log('目标文件已存在!');
+          return;
+      }
+      try {
+          fs__default["default"].writeFileSync(target, fs__default["default"].readFileSync(source));
+          console.log('copy file success!');
+      }
+      catch (err) {
+          console.log('copy file fail!', err);
+      }
+  };
+
   exports.compareVer = compareVer;
+  exports.copyFile = copyFile;
   exports.dateControl = dateControl;
+  exports.dateFormatPost = dateFormatPost;
+  exports.dateFormatPrint = dateFormatPrint;
+  exports.dateFormatSearch = dateFormatSearch;
+  exports.dateFormatSel = dateFormatSel;
   exports.everyTrim = everyTrim;
   exports.formatGetParams = formatGetParams;
   exports.isObject = isObject;

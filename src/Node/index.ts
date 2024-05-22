@@ -1,1 +1,1 @@
-import './files';
+export * from './files';

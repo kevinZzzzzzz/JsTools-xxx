@@ -1,6 +1,6 @@
 /**
  * 将参数拼接到接口 url 上
- * @example:
+ * @example
  * formatGetParams({ a: 1, b: 2, }) => '?a=1&b=2'
  * @params obj 对象
  * @returns temp 完整接口 uri 路径

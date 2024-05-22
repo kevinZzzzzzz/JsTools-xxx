@@ -1,6 +1,9 @@
-import 'fs';
+import fs from 'fs';
 
+var dateFormatSearch = 'YYYY-MM-DD';
+var dateFormatSel = 'YYYY-MM-DD HH:mm';
 var dateFormatPost = 'YYYY-MM-DD HH:mm:ss';
+var dateFormatPrint = ' YYYY 年 MM 月 DD 日 HH 时 mm 分 ';
 
 /**
  * 比较前一个版本号是否比后一个版本号高
@@ -25,7 +28,7 @@ function compareVer(firstV, secV) {
 
 /**
  * 将参数拼接到接口 url 上
- * @example:
+ * @example
  * formatGetParams({ a: 1, b: 2, }) => '?a=1&b=2'
  * @params obj 对象
  * @returns temp 完整接口 uri 路径
@@ -5828,4 +5831,23 @@ var dateControl = function (type, amount, unit, format) {
         : moment()[type](amount, unit).format(format);
 };
 
-export { compareVer, dateControl, everyTrim, formatGetParams, isObject, trim };
+/**
+ * 复制文件
+ * @param {*} source 源文件
+ * @param {*} target 目标文件
+ */
+var copyFile = function (source, target) {
+    if (fs.existsSync(target)) {
+        console.log('目标文件已存在!');
+        return;
+    }
+    try {
+        fs.writeFileSync(target, fs.readFileSync(source));
+        console.log('copy file success!');
+    }
+    catch (err) {
+        console.log('copy file fail!', err);
+    }
+};
+
+export { compareVer, copyFile, dateControl, dateFormatPost, dateFormatPrint, dateFormatSearch, dateFormatSel, everyTrim, formatGetParams, isObject, trim };

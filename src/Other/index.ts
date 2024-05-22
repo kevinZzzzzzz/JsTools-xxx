@@ -1,5 +1,5 @@
-import './type';
-import './variable';
+export * from './type';
+export * from './variable';
 /**
  * 比较前一个版本号是否比后一个版本号高
  * @example
