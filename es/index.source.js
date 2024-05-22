@@ -1,7 +1,7 @@
 /**
  * 比较前一个版本号是否比后一个版本号高
  * @example
- * `compareVer('1.1.1', '1.2.1') => false`
+ * compareVer('1.1.1', '1.2.1') => false
  * @params firstV 比较的版本号
  * @params secV 被比较的版本号
  * @returns true or false
@@ -56,7 +56,7 @@ var formatGetParams = function (obj) {
 };
 /**
  * 判断是否为对象
- * @example:
+ * @example
  * isObject({}) => true
  * @params obj 任意类型的值
  * @returns true | false
@@ -66,9 +66,8 @@ var isObject = function (obj) {
 };
 /**
  * 深度为对象的每个属性都去掉空格
- * @example:
+ * @example
  * everyTrim({  name: '  张三  ' }) => { name: '张三' }
- * @example:
  * everyTrim({
  *    name: '  张三  ',
  *    age: {
@@ -99,8 +98,8 @@ var everyTrim = function (data) {
 };
 /**
  * 去掉字符串空格
- * @example:
- * `trim(' aa ', true) => 'aa'`
+ * @example
+ *  trim(' aa ', true) => 'aa'
  * @params str 字符串内容
  * @params global 是否匹配全部空格
  * @returns string

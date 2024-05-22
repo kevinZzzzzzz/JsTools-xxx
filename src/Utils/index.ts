@@ -31,7 +31,7 @@ export const formatGetParams = (obj: any) => {
 
 /**
  * 判断是否为对象
- * @example:
+ * @example
  * isObject({}) => true
  * @params obj 任意类型的值
  * @returns true | false
@@ -42,9 +42,8 @@ export const isObject = (obj: any) => {
 
 /**
  * 深度为对象的每个属性都去掉空格
- * @example:
+ * @example
  * everyTrim({  name: '  张三  ' }) => { name: '张三' }
- * @example:
  * everyTrim({
  *    name: '  张三  ',
  *    age: {
@@ -75,8 +74,8 @@ export const everyTrim = function (data: any) {
 
 /**
  * 去掉字符串空格
- * @example:
- * `trim(' aa ', true) => 'aa'`
+ * @example
+ *  trim(' aa ', true) => 'aa'
  * @params str 字符串内容
  * @params global 是否匹配全部空格
  * @returns string
