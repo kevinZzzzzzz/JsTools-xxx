@@ -16,12 +16,12 @@
     "lint": "npm run prettier && npm run eslint",
     "eslint": "eslint ./src/* --fix --ext .ts,.tsx,.js,.jsx,.vue",
     "prettier": "prettier --write ./src/**/*.{ts,tsx,js,jsx,vue,html,css,scss,less}",
-    "doc": "typedoc --options ./typedoc.json --out html && npm run doc:md",
+    "doc": "typedoc --options ./typedoc.json --out html && npm run doc:md && node ./scripts/docs.after.js",
     "doc:md": "typedoc --plugin typedoc-plugin-markdown --options ./typedoc.json --out docs",
     "pub": "npm install --legacy-peer-deps && npm run lint && npm run build && npm run doc && npm publish",
     "push:before": "npm run lint && npm run build && npm run doc",
     "prepare": "husky install",
-    "updateDoc": "npm run build && npm run doc && node ./scripts/docs.after.js",
+    "updateDoc": "npm run build && npm run doc",
     "pushCode": "bash -c './bin/commit.sh"
   },
   "files": [
