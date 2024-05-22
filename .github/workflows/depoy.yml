@@ -1,0 +1,30 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 或者其他你想要触发部署的分支
+    paths-ignore: # 下列文件变更不触发部署，可以自行添加
+      - README.md
+      - HOPEFINISH.md
+      - dev.md
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run update  # 确保你的 package.json 中有构建命令
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.REACTSTATEMANAGE }}
+          publish_dir: ./html  # 替换为你的构建输出目录
