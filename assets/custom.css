@@ -47,7 +47,7 @@
 }
 
 .tsd-index-accordion::after {
-  content: "$xxx.log('Hello kevinZzzzzzz')";
+  content: "Like: $toolsXxx.trim(' Hello kevinZzzzzzz   ')";
   color: #ffc107;
   font-size: inherit;
   font-style: italic;
