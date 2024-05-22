@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run update  # 确保你的 package.json 中有构建命令
+        run: npm run updateDoc  # 确保你的 package.json 中有构建命令
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
