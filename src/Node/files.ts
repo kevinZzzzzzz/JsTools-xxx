@@ -5,7 +5,7 @@ import fs from 'fs';
  * @param {*} source 源文件
  * @param {*} target 目标文件
  */
-export const copyFile = (source, target) => {
+export const copyFile = (source: string, target: string) => {
   if (fs.existsSync(target)) {
     console.log('目标文件已存在!');
     return;

@@ -21,7 +21,7 @@ const copyFile = (source, target) => {
 };
 // 将源文件复制到html文件夹下  保证在页面端控制台直接使用库里面的方法
 copyFile(path.resolve(__dirname, '../iife/index.min.js'), path.resolve(__dirname, '../html/js-tools-xxx.js'))
-copyFile('./docs.onload.js', path.resolve(__dirname, '../html/docs.onload.js'))
+copyFile(path.resolve(__dirname, './docs.onload.js'), path.resolve(__dirname, '../html/docs.onload.js'))
 
 // 直接在html里面引入该源文件
 const filePath = './html/index.html'
