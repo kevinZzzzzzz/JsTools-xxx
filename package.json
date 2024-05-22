@@ -20,7 +20,8 @@
     "doc:md": "typedoc --plugin typedoc-plugin-markdown --options ./typedoc.json --out docs",
     "pub": "npm install --legacy-peer-deps && npm run lint && npm run build && npm run doc && npm publish",
     "push:before": "npm run lint && npm run build && npm run doc",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update": "npm run build && npm run doc"
   },
   "files": [
     "/lib",
