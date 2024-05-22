@@ -30,45 +30,45 @@ export default {
     {
       file: getPath(pkg.iife),
       format: 'iife', // iife 支持 自执行函数，可通过 `<script>` 标签加载。
-      name: '$xxx',
+      name: '$toolsXxx',
       plugins: [terser()],
     },
     {
       file: getPath(pkg.main),
       format: 'cjs', // lib 兼容 CommonJS Node 默认的模块规范，可通过 Webpack 加载。
-      name: '$xxx',
+      name: '$toolsXxx',
       plugins: [terser()],
     },
     {
       file: getPath(pkg.module),
       format: 'es', // es es6模块 ES module 规范，可用 Webpack、Rollup 加载。
-      name: '$xxx',
+      name: '$toolsXxx',
       plugins: [terser()],
     },
     {
       file: getPath(pkg.unpkg),
       format: 'umd', // dist 通用模块 IIFE，AMD[`amd`: 浏览器端的模块规范-可通过 RequireJS 可加载]，CJS。
-      name: '$xxx',
+      name: '$toolsXxx',
       plugins: [terser()],
     },
     {
       file: getPath(pkg['iife-source']),
-      name: '$xxx',
+      name: '$toolsXxx',
       format: 'iife', // iife
     },
     {
       file: getPath(pkg['main-source']),
-      name: '$xxx',
+      name: '$toolsXxx',
       format: 'cjs', // lib
     },
     {
       file: getPath(pkg['module-source']),
-      name: '$xxx',
+      name: '$toolsXxx',
       format: 'es', // es
     },
     {
       file: getPath(pkg['unpkg-source']),
-      name: '$xxx',
+      name: '$toolsXxx',
       format: 'umd', // dist
     },
   ],
