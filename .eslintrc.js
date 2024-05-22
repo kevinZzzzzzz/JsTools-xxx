@@ -22,7 +22,6 @@ module.exports = {
   },
   plugins: ['prettier', '@typescript-eslint', 'spellcheck', 'import', 'zob'],
   rules: {
-    'zob/comment': 'error', // 中英文空格间距 找英文符号正则 ([\u4e00-\u9fa5]\s*[!@#$%^&*_+=;:'"{\[\]},.\/\\`\(\)])
     '@typescript-eslint/ban-ts-comment': 'off',
     'no-useless-escape': 'off',
     'prettier/prettier': [
@@ -229,6 +228,7 @@ module.exports = {
     ],
     'import/first': ['error'], // 导入必须在最前面
     'import/exports-last': 'off', // 导出必须在最后面
+    'no-extra-boolean-cast': 'off', // 禁止使用不必要的布尔值类型转换
     'import/newline-after-import': ['error'], // 导入后必须留出空行
     'import/no-duplicates': ['error'], // 同一个文件的导入必须写在一行
     'import/order': ['error', { 'newlines-between': 'never' }], // 导入排序
