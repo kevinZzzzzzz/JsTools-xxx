@@ -21,7 +21,8 @@
     "pub": "npm install --legacy-peer-deps && npm run lint && npm run build && npm run doc && npm publish",
     "push:before": "npm run lint && npm run build && npm run doc",
     "prepare": "husky install",
-    "update": "npm run build && npm run doc"
+    "update": "npm run build && npm run doc",
+    "pushCode": "bash -c './bin/commit.sh"
   },
   "files": [
     "/lib",
