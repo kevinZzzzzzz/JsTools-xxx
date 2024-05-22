@@ -1,5 +1,5 @@
-const fs = require('fs')
-const {copyFile} = require('../src/Node/files')
+import fs from 'fs';
+import {copyFile} from '../src/Node/files'
 
 // 将源文件复制到html文件夹下  保证在页面端控制台直接使用库里面的方法
 copyFile('../src/iife/index.min.js', '../html/js-tools-xxx.js')
