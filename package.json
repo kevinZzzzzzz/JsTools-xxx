@@ -1,6 +1,6 @@
 {
   "name": "js-tools-xxx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "前端工具库",
   "main": "./dist/index.js",
   "module": "es/index.js",

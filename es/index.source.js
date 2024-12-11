@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 var dateFormatSearch = 'YYYY-MM-DD';
 var dateFormatSel = 'YYYY-MM-DD HH:mm';
 var dateFormatPost = 'YYYY-MM-DD HH:mm:ss';
@@ -25,6 +23,40 @@ function compareVer(firstV, secV) {
     });
     return bool && a;
 }
+
+/**
+ * @Author: kevinZzzzzz
+ * @Date: 2023-04-25 16:47:40
+ * @version:
+ * @LastEditors: kevinZzzzzz
+ * @LastEditTime: 2023-04-26 15:21:28
+ * @Description: 发布订阅类
+ * @FilePath: \hoslink-xxx\src\Bus\index.ts
+ */
+var Bus = /** @class */ (function () {
+    function Bus() {
+        this.list = {};
+    }
+    // 触发
+    Bus.prototype.emit = function (name) {
+        var _this = this;
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var eventName = this.list[name];
+        eventName.forEach(function (fn) {
+            fn.apply(_this, args);
+        });
+    };
+    // 监听
+    Bus.prototype.on = function (name, callback) {
+        var fn = this.list[name] || [];
+        fn.push(callback);
+        this.list[name] = fn;
+    };
+    return Bus;
+}());
 
 /**
  * 将参数拼接到接口 url 上
@@ -5831,23 +5863,232 @@ var dateControl = function (type, amount, unit, format) {
         : moment()[type](amount, unit).format(format);
 };
 
-/**
- * 复制文件
- * @param {*} source 源文件
- * @param {*} target 目标文件
- */
-var copyFile = function (source, target) {
-    if (fs.existsSync(target)) {
-        console.log('目标文件已存在!');
-        return;
-    }
-    try {
-        fs.writeFileSync(target, fs.readFileSync(source));
-        console.log('copy file success!');
-    }
-    catch (err) {
-        console.log('copy file fail!', err);
-    }
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+function __values(o) {
+  var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+  if (m) return m.call(o);
+  if (o && typeof o.length === "number") return {
+      next: function () {
+          if (o && i >= o.length) o = void 0;
+          return { value: o && o[i++], done: !o };
+      }
+  };
+  throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+      while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+  }
+  catch (error) { e = { error: error }; }
+  finally {
+      try {
+          if (r && !r.done && (m = i["return"])) m.call(i);
+      }
+      finally { if (e) throw e.error; }
+  }
+  return ar;
+}
+
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+  var e = new Error(message);
+  return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
 
-export { compareVer, copyFile, dateControl, dateFormatPost, dateFormatPrint, dateFormatSearch, dateFormatSel, everyTrim, formatGetParams, isObject, trim };
+/**
+ * 获取多级对象值
+ * @example
+ *  getV('默认值', {name: {children: [123, 456]}}, 'name', 'children', '0'); /// 123
+ *  getV('默认值', {name: {children: [123, 456]}}, 'name.children.0'); /// 123
+ *  getV('默认值', {name: {children: [123, 456]}}, 'name.children.xxx'); /// 默认值
+ *  getV('默认值', { name: {children: [123, 456], '[]': ['test']} }, 'name.[].0'); /// 'test'
+ *  getV('默认值', { name: {children: [123, 456], '[]': ['test']} }, 'name', '[]', 0); /// 'test'
+ * @param defaultResult 默认值(兜底'--')
+ * @param args 需要获取的多级 rest 参数或者独立多级 string
+ * @returns
+ */
+function getV(defaultResult) {
+    var e_1, _a;
+    var _b;
+    if (defaultResult === void 0) { defaultResult = '--'; }
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    if ((args === null || args === void 0 ? void 0 : args.length) == 2 && ((_b = args[1]) === null || _b === void 0 ? void 0 : _b.includes('.'))) {
+        var _c = __read(args, 2), obj = _c[0], propPath = _c[1];
+        var propKeys = propPath.split('.');
+        var value = obj;
+        try {
+            for (var propKeys_1 = __values(propKeys), propKeys_1_1 = propKeys_1.next(); !propKeys_1_1.done; propKeys_1_1 = propKeys_1.next()) {
+                var key = propKeys_1_1.value;
+                value = hasKey(value, key) ? value[key] : defaultResult;
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (propKeys_1_1 && !propKeys_1_1.done && (_a = propKeys_1.return)) _a.call(propKeys_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return value !== null && value !== void 0 ? value : defaultResult;
+    }
+    return args.length >= 2
+        ? // eslint-disable-next-line no-prototype-builtins, indent
+            args.reduce(function (a, b) { var _a; return (hasKey(a, b) ? (_a = a[b]) !== null && _a !== void 0 ? _a : defaultResult : defaultResult); })
+        : defaultResult;
+}
+/**
+ * 对象/数组包含某个 key/index 或者属性
+ * @example
+ * hasKey({ a: 1 }, 'a'); /// true
+ * hasKey([0, 1], '0'); /// true
+ * hasKey([0, 1], 2); /// false
+ * hasKey({ a: 1 }, 'b'); /// false
+ * const a = { a: 1 };
+ * a.__proto__.x = 1;
+ * hasKey(a, 'x'); /// true;
+ * @param data 对象
+ * @param key 需要判断的 key
+ * @returns
+ */
+function hasKey(data, key) {
+    if (!data) {
+        return false;
+    }
+    try {
+        // eslint-disable-next-line no-prototype-builtins
+        if (data[key] !== undefined || (data === null || data === void 0 ? void 0 : data.hasOwnProperty(key))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    catch (e) {
+        return false;
+    }
+}
+
+/**
+ * 获取localStroage数据
+ * @example
+ * getLocalStroage('aa') => 'aa' || null
+ * @params
+ * key 存储的key值
+ * @returns
+ * value 存储的value值
+ */
+var getLocalStroage = function (key) { return function () { return JSON.parse(localStorage.getItem(key)); }; };
+/**
+ * 获取SessionStroage数据
+ * @example
+ * getSessionStroage('aa') => 'aa' || null
+ * @params
+ * key 存储的key值
+ * @returns
+ * value 存储的value值
+ */
+var getSessionStroage = function (key) { return function () { return JSON.parse(sessionStorage.getItem(key)); }; };
+/**
+ * 设置缓存数据
+ * @example
+ * setStorage('localStorage', 'aa', '123) => 'aa' || null
+ * @params
+ * type: 'localStorage' | 'sessionStorage' 存储的位置类型
+ * key 存储的key值
+ * value 存储的value值
+ */
+function setStorage(type, key, value) {
+    if (!!window[type].getItem(key)) {
+        window[type].removeItem(key);
+    }
+    window[type].setItem(key, value);
+}
+/**
+ * 获取缓存数据
+ * @example
+ * getStorage('localStorage', 'aa') => '123' || null
+ * @params
+ * type: 'localStorage' | 'sessionStorage' 存储的位置类型
+ * key 存储的key值
+ * @returns
+ * value: 存储的value值
+ */
+function getStorage(type, key) {
+    var _a;
+    return !!window[type].getItem(key)
+        ? ((_a = window[type].getItem(key)) === null || _a === void 0 ? void 0 : _a.includes('{'))
+            ? JSON.parse(window[type].getItem(key))
+            : window[type].getItem(key)
+        : '';
+}
+/**
+ * 设置cookie
+ * @example
+ * setCookie('aa', 123, 1000) => 'aa' || null
+ * @params
+ * key 存储的key值
+ * value 存储的value值
+ * time 存储时限
+ */
+function setCookie(key, value, time) {
+    var d = new Date();
+    d.setTime(d.getTime() + time * 60 * 1000);
+    var expires = 'expires=' + d.toUTCString();
+    document.cookie = key + '=' + value + '; ' + expires;
+}
+/**
+ * 获取cookie
+ * @example
+ * getCookie('aa') => 123 || ""
+ * @params
+ * key 存储的key值
+ * @returns
+ * value 存储的value值 || ""
+ */
+function getCookie(key) {
+    var name = key + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0)
+            return c.substring(name.length, c.length);
+    }
+    return '';
+}
+/**
+ * 删除cookie
+ * @example
+ * removeCookie('aa')
+ * @params
+ * key 存储的key值
+ * @returns
+ * undefined
+ */
+function removeCookie(key) {
+    var d = new Date();
+    d.setTime(d.getTime() - 1);
+    var expires = 'expires=' + d.toUTCString();
+    document.cookie = "".concat(key, "=''; expires=").concat(expires, ";");
+}
+
+export { Bus, compareVer, dateControl, dateFormatPost, dateFormatPrint, dateFormatSearch, dateFormatSel, everyTrim, formatGetParams, getCookie, getLocalStroage, getSessionStroage, getStorage, getV, hasKey, isObject, removeCookie, setCookie, setStorage, trim };
